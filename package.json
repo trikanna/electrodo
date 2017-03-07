@@ -1,0 +1,26 @@
+{
+  "name": "electrodo",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "homepage": "./",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0",
+    "electron": "^1.6.1",
+    "electron-packager": "^8.5.2",
+    "react-scripts": "0.9.4",
+    "wait-on": "^2.0.2"
+  },
+  "scripts": {
+    "react-start": "$(yarn bin)/react-scripts start",
+    "electron-start": "ELECTRON_DEV=1 $(yarn bin)/electron .",
+    "start": "$(yarn bin)/concurrently 'yarn react-start' '$(yarn bin)/wait-on http://localhost:3000/ && yarn electron-start'",
+    "electron-build": "$(yarn bin)/electron-packager ./ --platform=darwin --arch=x64 --out=out --icon=./icon.icns --overwrite",
+    "react-build": "$(yarn bin)/react-scripts build",
+    "build": "yarn react-build && yarn electron-build"
+  }
+}
